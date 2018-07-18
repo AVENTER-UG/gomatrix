@@ -486,7 +486,7 @@ func (cli *Client) SendVideo(roomID, body, url string) (*RespSendEvent, error) {
 		})
 }
 
-// SendFile send an m.room.message event intor the given room with a msgtyope of m.file
+// SendFile send an m.room.message event intor the given room with a msgtype of m.file
 // See https://matrix.org/docs/spec/client_server/r0.2.0.html#m-file
 func (cli *Client) SendFile(roomID, body, url string) (*RespSendEvent, error) {
 	return cli.SendMessageEvent(roomID, "m.room.message",
@@ -494,6 +494,16 @@ func (cli *Client) SendFile(roomID, body, url string) (*RespSendEvent, error) {
 			MsgType: "m.file",
 			Body:    body,
 			URL:     url,
+		})
+}
+
+// CreateWidget send an im.vector.modular.widgets event intor the given room
+func (cli *Client) CreateWidget(roomID, msgtype, url, name string) (*RespSendEvent, error) {
+	return cli.SendMessageEvent(roomID, "im.vector.modular.widgets",
+		WidgetMessage{
+			Type: msgtype,
+			URL:  url,
+			Name: name,
 		})
 }
 
