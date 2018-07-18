@@ -101,6 +101,13 @@ type FileInfo struct {
 	Size     int64  `json:"size"`
 }
 
+// An WidgetMessage create a Widget in a room
+type WidgetMessage struct {
+	Type string `json:"type"`
+	URL  string `json:"url"`
+	Name string `json:"name"`
+}
+
 var htmlRegex = regexp.MustCompile("<[^<]+?>")
 
 // GetHTMLMessage returns an HTMLMessage with the body set to a stripped version of the provided HTML, in addition
