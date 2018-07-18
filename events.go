@@ -103,9 +103,10 @@ type FileInfo struct {
 
 // An WidgetMessage create a Widget in a room
 type WidgetMessage struct {
-	Type string `json:"type"`
-	URL  string `json:"url"`
-	Name string `json:"name"`
+	Type     string `json:"type"`
+	URL      string `json:"url"`
+	Name     string `json:"name"`
+	StateKey string `json:"state_key"`
 }
 
 var htmlRegex = regexp.MustCompile("<[^<]+?>")

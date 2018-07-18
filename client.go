@@ -498,8 +498,8 @@ func (cli *Client) SendFile(roomID, body, url string) (*RespSendEvent, error) {
 }
 
 // CreateWidget send an im.vector.modular.widgets event intor the given room
-func (cli *Client) CreateWidget(roomID, msgtype, url, name string) (*RespSendEvent, error) {
-	return cli.SendMessageEvent(roomID, "im.vector.modular.widgets",
+func (cli *Client) CreateWidget(roomID, stateKey, msgtype, url, name string) (*RespSendEvent, error) {
+	return cli.SendStateEvent(roomID, "im.vector.modular.widgets", stateKey,
 		WidgetMessage{
 			Type: msgtype,
 			URL:  url,
