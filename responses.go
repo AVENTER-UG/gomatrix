@@ -155,6 +155,12 @@ type RespLogout struct{}
 // RespLogoutAll is the JSON response for https://matrix.org/docs/spec/client_server/r0.6.0#post-matrix-client-r0-logout-all
 type RespLogoutAll struct{}
 
+type RespWhoAmI struct {
+	DeviceID string `json:"device_id"`
+	UserID   string `json:"user_id"`
+	IsGuest  bool   `json:"is_guest"`
+}
+
 // RespCreateRoom is the JSON response for https://matrix.org/docs/spec/client_server/r0.2.0.html#post-matrix-client-r0-createroom
 type RespCreateRoom struct {
 	RoomID string `json:"room_id"`
