@@ -794,7 +794,7 @@ func NewClient(homeserverURL, userID, accessToken string) (*Client, error) {
 		AccessToken:   accessToken,
 		HomeserverURL: hsURL,
 		UserID:        userID,
-		Prefix:        "/_matrix/client/r0",
+		Prefix:        "/_matrix/client/v3",
 		Syncer:        NewDefaultSyncer(userID, store),
 		Store:         store,
 	}
