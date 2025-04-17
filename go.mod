@@ -1,3 +1,3 @@
 module github.com/AVENTER-UG/gomatrix
 
-go 1.20
+go 1.24

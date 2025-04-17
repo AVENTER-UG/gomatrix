@@ -613,16 +613,6 @@ func (cli *Client) SendFile(roomID, body, url string) (*RespSendEvent, error) {
 		})
 }
 
-// CreateWidget send an im.vector.modular.widgets event intor the given room
-func (cli *Client) CreateWidget(roomID, stateKey, msgtype, url, name string) (*RespSendEvent, error) {
-	return cli.SendStateEvent(roomID, "im.vector.modular.widgets", stateKey,
-		WidgetMessage{
-			Type: msgtype,
-			URL:  url,
-			Name: name,
-		})
-}
-
 // SendNotice sends an m.room.message event into the given room with a msgtype of m.notice
 // See http://matrix.org/docs/spec/client_server/r0.2.0.html#m-notice
 func (cli *Client) SendNotice(roomID, text string) (*RespSendEvent, error) {
