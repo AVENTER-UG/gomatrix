@@ -16,6 +16,7 @@ import (
 	"strings"
 	"sync"
 	"time"
+	"errors"
 )
 
 // Client represents a Matrix client.
@@ -88,6 +89,26 @@ func (cli *Client) BuildURLWithQuery(urlPath []string, urlQuery map[string]strin
 	}
 	u.RawQuery = q.Encode()
 	return u.String()
+}
+
+// MXCToHTTP build the https url from an MXC URL
+func (cli *Client) MXCToHTTP(mxcURL string) (string, error) {
+	if !strings.HasPrefix(mxcURL, "mxc://") {
+		return "", errors.New("uncorrect MXC-URL")
+	}
+
+	// "mxc://matrix.org/abc123" => "matrix.org/abc123"
+	trimmed := strings.TrimPrefix(mxcURL, "mxc://")
+	parts := strings.SplitN(trimmed, "/", 2)
+	if len(parts) != 2 {
+		return "", errors.New("uncorrect MXC-URL format")
+	}
+
+	mediaServer := parts[0]
+	mediaID := parts[1]
+
+	httpURL := fmt.Sprintf("%s/_matrix/media/v3/download/%s/%s", cli.HomeserverURL.String(), mediaServer, mediaID)
+	return httpURL, nil
 }
 
 // SetCredentials sets the user ID and access token on this client instance.
